@@ -1,0 +1,31 @@
+spring:
+  security:
+    user:
+      name: bank
+      password: test
+  datasource:
+    #url: jdbc:postgresql://postgres:5432/sa
+    url: jdbc:postgresql://213.171.3.140:5432/sa
+    #url: jdbc:postgresql://localhost:5432/sa
+    username: sa
+    password: pastest
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    #url: jdbc:postgresql://postgres:5432/sa
+    #url: jdbc:postgresql://localhost:5432/sa
+    url: jdbc:postgresql://213.171.3.140:5432/sa
+    schemas: public
+    user: sa
+    password: pastest
+    driver-class-name: org.postgresql.Driver
+    locations: classpath:/migration
+    out-of-order: true
+    ignore-missing-migrations: true
+    ignore-missing-patterns:
+     - "*missing"
+feature:
+  toggle:
+    delete:
+      account: true
+
+

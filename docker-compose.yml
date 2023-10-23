@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    image: bank
+    container_name: bank
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+      - balancer
+    restart: on-failure
+  app1:
+    image: bank
+    container_name: bank1
+    ports:
+      - 8081:8080
+    depends_on:
+      - postgres
+      - balancer
+    restart: on-failure
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: pastest
+      POSTGRES_USER: sa
+    ports:
+      - 5432:5432
+  balancer:
+    image: nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - D:\java\bank\balancer\nginx.conf:/etc/nginx/nginx.conf
+#docker-compose up
