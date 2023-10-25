@@ -1,5 +1,6 @@
 package com.nikiforov.account;
 
+import com.nikiforov.account.dto.Account;
 import com.nikiforov.account.model.AccountEntity;
 import com.nikiforov.account.repositories.AccountRepository;
 import com.nikiforov.account.services.AccountService;
@@ -40,6 +41,7 @@ class AccountApplicationTests {
 		AccountService ac = new AccountService(accountRepository);
 		List<AccountEntity> result = ac.getUserAccounts(account.getIdClient());
 		Assertions.assertEquals(result,aclist);
+		when( accountRepository.findAllByIdClient(anyLong())).thenReturn(new ArrayList<AccountEntity>());
 		result = ac.getUserAccounts(0L);
 		Assertions.assertEquals(result.size(),0);
 	}
